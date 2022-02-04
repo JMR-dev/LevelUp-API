@@ -1,0 +1,9 @@
+{
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django",
+        "--django-settings-module=<levelup-server>.settings",
+    ],
+    "python.pythonPath": "/Users/jason.ross/.local/share/virtualenvs/levelup-server-Wy00p224/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true   
+}
