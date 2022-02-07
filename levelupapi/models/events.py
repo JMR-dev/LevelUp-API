@@ -1,12 +1,11 @@
 from django.db import models
 from levelupapi.models.gamer import Gamer
-from models import Game
+from levelupapi.models.game import Game
 
+class Event(models.Model):
 
-class Game(models.Model):
-
-    game= models.ForeignKey(Game)
+    game= models.ForeignKey(Game, on_delete=models.DO_NOTHING)
     description = models.CharField(max_length=256)
     date = models.DateField()
-    time = models.TimeField(_(""), auto_now=False, auto_now_add=False)
-    organizer = models.ForeignKey(Gamer)
+    time = models.TimeField((""), auto_now=False, auto_now_add=False)
+    organizer = models.ForeignKey(Gamer, on_delete=models.DO_NOTHING)
