@@ -1,5 +1,4 @@
 
-SELECT * FROM LEVELUPAPI_GAMER;
-
-INSERT INTO levelupapi_gamer(bio, user_id)
-VALUES ("My name is Jason", 1);
+SELECT * FROM auth_user;
+SELECT * FROM authtoken_token;
+SELECT * FROM levelupapi_gamer;

@@ -1,11 +1,11 @@
 from django.db import models
-from levelupapi.models.game_type import Game_Type
+from levelupapi.models.game_type import GameType
 from levelupapi.models.gamer import Gamer
 
 
 class Game(models.Model):
 
-    game_type = models.ForeignKey(Game_Type, on_delete=models.DO_NOTHING)
+    game_type = models.ForeignKey(GameType, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=256)
     maker = models.CharField(max_length=256)
     gamer = models.ForeignKey(Gamer, on_delete=models.DO_NOTHING)

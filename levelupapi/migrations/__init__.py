@@ -1,1 +1,0 @@
-from levelupapi.migrations.initial import migrations
