@@ -37,6 +37,25 @@ class EventView(ViewSet):
             events = events.filter(game_id=game)
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
+    # confused as to why I'm getting a 500 error on this. An article seems to indicate that I may need to nest more of my data inside another JSON object, if for example, it has foreign keys with additional data. https://stackoverflow.com/questions/60279456/django-postman-error-this-field-is-required
+    def create(self, request):
+        """Handle POST operations
+
+        Returns
+            Response -- JSON serialized game instance
+        """
+        event = Event.objects.get(user=request.auth.user)
+        event_type = Event.objects.get(pk=request.data["description"])
+
+        event = Event.objects.create(
+            description=request.data["description"],
+            date=request.data["date"],
+            time=request.data["time"],
+            game_id=request.data["game_id"],
+            organizer_id=request.data["organizer_id"]
+        )
+        serializer = EventSerializer(event)
+        return Response(serializer.data)
     
 class EventSerializer(serializers.ModelSerializer):
     """JSON serializer for event types
