@@ -26,10 +26,10 @@ class GameView(ViewSet):
         
 
     def list(self, request):
-        """Handle GET requests to get all game s
+        """Handle GET requests to get all games
 
         Returns:
-            Response -- JSON serialized list of game s
+            Response -- JSON serialized list of games
         """
         game_ = request.query_params.get('type', None)
         games = Game.objects.all()
@@ -76,6 +76,20 @@ class GameView(ViewSet):
         game.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+    def destroy(self, request, pk):
+        """Handle DELETE requests for a game
+
+        Args:
+            request (object): DELETE request object
+            pk (num): Accepts the argument of the primary key of a game
+
+        Returns:
+            Status: If the method completes successfully, return a HTTP response 204 
+        """
+        game = Game.objects.get(pk=pk)
+        game.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+        
 
 class GameSerializer(serializers.ModelSerializer):
     """JSON serializer for game s

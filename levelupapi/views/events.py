@@ -72,7 +72,19 @@ class EventView(ViewSet):
         event.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-    
+    def destroy(self, request, pk):
+        """Handle DELETE requests for a game
+
+        Args:
+            request (object): DELETE request object
+            pk (num): Accepts the argument of the primary key of an event
+
+        Returns:
+            Status: If the method completes successfully, return a HTTP response 204 
+        """
+        event = Event.objects.get(pk=pk)
+        event.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
 class EventSerializer(serializers.ModelSerializer):
     """JSON serializer for event types
     """
