@@ -31,10 +31,8 @@ class GameTypeView(ViewSet):
         Returns:
             Response -- JSON serialized list of game types
         """
-        label = request.query_params.get('label', None)
+        
         game_types = GameType.objects.all()
-        if label is not NONE:
-            game_types = game_types.filter(label=label)
         serializer = GameTypeSerializer(game_types, many=True)
         return Response(serializer.data)
     
